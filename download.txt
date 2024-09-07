@@ -1,0 +1,13 @@
+stereo_thermal_depth/frick_1.zip
+stereo_thermal_depth/frick_2.zip
+stereo_thermal_depth/hawkins_1_1.zip
+stereo_thermal_depth/hawkins_1_2.zip
+stereo_thermal_depth/hawkins_2.zip
+stereo_thermal_depth/hawkins_3.zip
+stereo_thermal_depth/hawkins_4.zip
+stereo_thermal/firesgl_1.zip
+stereo_thermal/firesgl_2_1.zip
+stereo_thermal/firesgl_2_2.zip
+stereo_thermal/firesgl_2_3.zip
+stereo_thermal/firesgl_3_1.zip
+stereo_thermal/gascola.zip
