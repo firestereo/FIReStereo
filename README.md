@@ -3,7 +3,7 @@
   <h1 align="center">FIReStereo: Forest InfraRed Stereo Dataset for UAS Depth Perception in Visually Degraded Environments</h1>
   <p align="center">
   Devansh Dhrafani*, Yifei Liu*, Andrew Jong, Ukcheol Shin, Yao He, Tyler Harp, Yaoyu Hu, Jean Oh, Sebastian Scherer</p>
-  <h3 align="center">Paper | <a href="https://firestereo.github.io/">Project Page</a></h3>
+  <h3 align="center"><a href="http://arxiv.org/abs/2409.07715">Paper</a> | <a href="https://firestereo.github.io/">Project Page</a></h3>
 
 </p>
 
