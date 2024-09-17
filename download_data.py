@@ -34,18 +34,21 @@ def unzip(zip_file, out_dir):
     tqdm.write('Unzipping', zip_file, 'to', out_dir)
     os.system(f"unzip -q -o {zip_file} -d {out_dir}")
 
-def filter_data_type(type, files):
-    if type:
-        filtered = [f for f in files if type in f]
-        return filtered
-    else:
+def filter_data_type(types, files):
+    if types is None or types[0] == 'all':
         return files
+    else:
+        filtered = []
+        for type in types:
+            filtered += [f for f in files if type in f]
+        return filtered
+    
     
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description="Download data from the Airlab server.")
     parser.add_argument('--out_dir', default='./firestereo', help="Root directory to save the downloaded data.")
     parser.add_argument('--unzip', action='store_true', help="Unzip the downloaded files.")
-    parser.add_argument('--data', nargs='+', help="Type of data to download: all (default), depth, thermal")
+    parser.add_argument('--data', nargs='+', help="Type of data to download: all (default), depth, thermal, rosbags, reconstruction")
     args = parser.parse_args()
     if not os.path.exists(args.out_dir):
         os.makedirs(args.out_dir)

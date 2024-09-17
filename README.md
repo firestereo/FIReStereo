@@ -14,6 +14,28 @@
 pip install minio tqdm
 python download_data.py [--outdir] [--unzip] [--data]
 ```
-- `--data`: select `depth` for our stereo thermal & depth collection, or `thermal` for the collection featuring prescribed fire and smoke
+- `--data`: default is `all`. Select:
+  - `depth` for our stereo thermal & depth collection
+  - `thermal` for the collection featuring prescribed fire and smoke
+  - `rosbags` for LiDAR and IMU data
+  - `reconstruction` for the reconstructed point clouds and trajectories from SLAM
 
-### Stay tuned for visualization tool, dataloader, training scripts, and models.
+More details about each dataset sequence can be found in [data_description.md](data_description.md).
+
+
+### Visualization tool
+````bash
+python browse_data.py [--dir] [--options] [--skip] [--align_contrast]
+````
+- `--dir`: path to single thermal/depth directory or directory containing (thermal) img_left,img_right
+- `--options`: visualize `thermal` or `depth`
+- `--skip`: skip every nth frame
+- Navigate with:
+  - `<-` `->` for left, right
+  - `[` `]` for left by n, right by n
+  - `p` for printing current frame number
+  - `d` for delete current frame
+  - `l` for display horizontal lines across stereo pair
+  - `esc` for exit
+
+### Stay tuned for thermal processing, dataloader, training scripts, and models.

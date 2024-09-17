@@ -11,3 +11,17 @@ stereo_thermal/firesgl_2_2.zip
 stereo_thermal/firesgl_2_3.zip
 stereo_thermal/firesgl_3_1.zip
 stereo_thermal/gascola.zip
+reconstruction/frick_1.zip
+reconstruction/frick_2.zip
+reconstruction/frick_3.zip
+reconstruction/hawkins_1.zip
+reconstruction/hawkins_2.zip
+reconstruction/hawkins_3.zip
+reconstruction/hawkins_4.zip
+rosbags/frick_1.zip
+rosbags/frick_2.zip
+rosbags/frick_3.zip
+rosbags/hawkins_1.zip
+rosbags/hawkins_2.zip
+rosbags/hawkins_3.zip
+rosbags/hawkins_4.zip
