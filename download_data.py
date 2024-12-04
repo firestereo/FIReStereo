@@ -31,7 +31,7 @@ def unzip(zip_file, out_dir):
 
     Returns:
     """
-    tqdm.write('Unzipping', zip_file, 'to', out_dir)
+    tqdm.write(f"Unzipping {zip_file} to {out_dir}")
     os.system(f"unzip -q -o {zip_file} -d {out_dir}")
 
 def filter_data_type(types, files):
