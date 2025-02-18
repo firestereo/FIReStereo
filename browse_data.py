@@ -5,34 +5,22 @@ from utils import process_image, visualize_depth_as_numpy, align_contrast
 import numpy as np
 from imageio import imread
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--dir", help="Path to the folder containing images")
-parser.add_argument(
-    "--skip",
-    type=int,
-    default=20,
-    help="Number of frames to jump when pressing 'q' or 'e'",
-)
-parser.add_argument("--options", default="thermal", help="Display: thermal (default), depth")
-parser.add_argument("--align_contrast", action="store_true", help="Align contrast of images")
-
-
-def display_images(folder_path, frame_jump, contrast=False):
+def display_images(args):
 
     image_left_files = None
     img_right_files = None
     image_files = None
 
     # if folder_path has img_left and img_right, then display both images side by side
-    if os.path.exists(os.path.join(folder_path, "img_left")):
-        img_left_folder = os.path.join(folder_path, "img_left")
-        img_right_folder = os.path.join(folder_path, "img_right")
+    if os.path.exists(os.path.join(args.dir, "img_left")):
+        img_left_folder = os.path.join(args.dir, "img_left")
+        img_right_folder = os.path.join(args.dir, "img_right")
         image_left_files = [f for f in os.listdir(img_left_folder) if f.lower().endswith((".png", ".jpg", ".jpeg"))]
         img_right_files = [f for f in os.listdir(img_right_folder) if f.lower().endswith((".png", ".jpg", ".jpeg"))]
         image_left_files.sort()
         img_right_files.sort()
     else:
-        image_files = [f for f in os.listdir(folder_path) if f.lower().endswith((".png", ".jpg", ".jpeg"))]
+        image_files = [f for f in os.listdir(args.dir) if f.lower().endswith((".png", ".jpg", ".jpeg"))]
         image_files.sort()
 
     current_index = 0
@@ -43,7 +31,7 @@ def display_images(folder_path, frame_jump, contrast=False):
 
     while True:
         if args.options == "depth":
-            image_path = os.path.join(folder_path, image_files[current_index])
+            image_path = os.path.join(args.dir, image_files[current_index])
             image = np.array(imread(image_path).astype(np.float32)) / 256.0
             image = visualize_depth_as_numpy(image)
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
@@ -51,19 +39,18 @@ def display_images(folder_path, frame_jump, contrast=False):
             if image_left_files is not None and img_right_files is not None:#stereo
                 image_left_path = os.path.join(img_left_folder, image_left_files[current_index])
                 image_right_path = os.path.join(img_right_folder, img_right_files[current_index])
-                image_left = process_image(cv2.imread(image_left_path, cv2.IMREAD_UNCHANGED))
-                image_right = process_image(cv2.imread(image_right_path, cv2.IMREAD_UNCHANGED))
-                if contrast:
+                image_left = process_image(cv2.imread(image_left_path, cv2.IMREAD_UNCHANGED), args.process)
+                image_right = process_image(cv2.imread(image_right_path, cv2.IMREAD_UNCHANGED), args.process)
+                if args.align_contrast:
                     image_left, image_right = align_contrast(image_left, image_right)
 
                 image = cv2.hconcat([image_left, image_right])
                 image_path = image_left_path
                 image_files = image_left_files
-            else:#mono
-                image_path = os.path.join(folder_path, image_files[current_index])
+            else: #mono
+                image_path = os.path.join(args.dir, image_files[current_index])
                 image = cv2.imread(image_path, cv2.IMREAD_UNCHANGED)
-                image = process_image(image)
-
+                image = process_image(image, args.process)
         # if image is grey scale, convert to RGB
         if len(image.shape) == 2:
             image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
@@ -104,9 +91,9 @@ def display_images(folder_path, frame_jump, contrast=False):
         elif key == 83 or key == 63235:  # Right arrow key
             current_index = (current_index + 1) % len(image_files)
         elif key == ord("["):  # '[' key to go backward by 10 frames
-            current_index = (current_index - frame_jump) % len(image_files)
+            current_index = (current_index - args.skip) % len(image_files)
         elif key == ord("]"):  # ']' key to go forward by 10 frames
-            current_index = (current_index + frame_jump) % len(image_files)
+            current_index = (current_index + args.skip) % len(image_files)
         elif key == ord("p"):  # 'p' key to print image name on terminal
             print(f"Current Image Name: {image_name}")
         elif key == ord("d"):
@@ -133,6 +120,17 @@ def display_images(folder_path, frame_jump, contrast=False):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dir", help="Path to the folder containing images")
+    parser.add_argument(
+        "--skip",
+        type=int,
+        default=20,
+        help="Number of frames to jump when pressing 'q' or 'e'",
+    )
+    parser.add_argument("--options", default="thermal", choices=["thermal", "depth"], help="Display modality")
+    parser.add_argument("--align_contrast", action="store_true", help="Align contrast of images")
+    parser.add_argument("--process", default="minmax", choices=["minmax", "firestereo"], help="16-bit to 8-bit processing type")
     args = parser.parse_args()
 
-    display_images(args.dir, args.skip, args.align_contrast)
+    display_images(args)

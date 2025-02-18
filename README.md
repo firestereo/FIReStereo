@@ -25,11 +25,12 @@ More details about each dataset sequence can be found in [data_description.md](d
 
 ### Visualization tool
 ````bash
-python browse_data.py [--dir] [--options] [--skip] [--align_contrast]
+python browse_data.py [--dir] [--options] [--skip] [--align_contrast] [--process]
 ````
 - `--dir`: path to single thermal/depth directory or directory containing (thermal) img_left,img_right
 - `--options`: visualize `thermal` or `depth`
 - `--skip`: skip every nth frame
+- `--process`: apply 16-bit to 8-bit processing with `minmax` or `firestereo`
 - Navigate with:
   - `<-` `->` for left, right
   - `[` `]` for left by n, right by n
@@ -38,4 +39,20 @@ python browse_data.py [--dir] [--options] [--skip] [--align_contrast]
   - `l` for display horizontal lines across stereo pair
   - `esc` for exit
 
-### Stay tuned for thermal processing, dataloader, training scripts, and models.
+Visualize the thermal images with our 16-bit to 8-bit converstion and pre-processing pipeline by running python browse_data.py with `--process firestere` option. This will apply the same processing pipeline as in the paper.
+
+### Stay tuned for dataloader, training scripts, and models.
+
+### Citation
+If you find this work useful, please consider citing:
+```
+@misc{firestereo2024,
+      title={FIReStereo: Forest InfraRed Stereo Dataset for UAS Depth Perception in Visually Degraded Environments},
+      author={Dhrafani, Devansh and Liu, Yifei and Jong, Andrew and Shin, Ukcheol and He, Yao and Harp, Tyler and Hu, Yaoyu and Oh, Jean and Scherer, Sebastian},
+      year={2024},
+      eprint={2409.07715},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2409.07715}, 
+    }
+```

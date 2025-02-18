@@ -40,7 +40,28 @@ def align_contrast(imgL, imgR):
         imgL = np.clip(imgL, 0, 255)
     return imgL.astype(np.uint8), imgR.astype(np.uint8)
 
+def enhance_image(image):
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    clahe = clahe.apply(image)
+    bilateral = cv2.bilateralFilter(clahe, 5, 20, 15)
+    return bilateral
+
 def process_image(image_in, type="minmax"):
     if type == "minmax":
         image_out = (image_in - np.min(image_in)) / (np.max(image_in) - np.min(image_in)) * 255
+    
+    elif type == "firestereo":
+        if np.max(image_in) < 35000:
+            image_out = (image_in - np.min(image_in)) / (np.max(image_in) - np.min(image_in)) * 255
+        else:
+            im_srt = np.sort(image_in.reshape(-1))
+            upper_bound = im_srt[round(len(im_srt) * 0.99) - 1]
+            lower_bound = im_srt[round(len(im_srt) * 0.01)]
+
+            img = image_in
+            img[img < lower_bound] = lower_bound
+            img[img > upper_bound] = upper_bound
+            image_out = ((img - lower_bound) / (upper_bound - lower_bound)) * 255.0
+        image_out = enhance_image(image_out.astype(np.uint8))
+    
     return image_out.astype(np.uint8)
