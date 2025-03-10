@@ -12,6 +12,6 @@ The <strong>Frick</strong> experimental sequences were recorded during the night
 
 <strong>Thermal</strong> are recorded in 16-bit raw for all collections besides Firesgl, which is logged in 8-bit RGB. Dataloader and visualization tool will be shared in our [github repo](https://github.com/firestereo/firestereo).
 
-LiDAR and IMU <strong>rosbag</strong> files are provided for each Frick and Gascola sequences:
+LiDAR and IMU <strong>rosbag</strong> files are provided for each Frick and Hawkins sequences:
 - Frick: all topics in one bag
 - Hawkins: topics in different bags

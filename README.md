@@ -20,6 +20,8 @@ python download_data.py [--outdir] [--unzip] [--data]
   - `rosbags` for LiDAR and IMU data
   - `reconstruction` for the reconstructed point clouds and trajectories from SLAM
 
+Calibration file can be found in `config/firestereo.yaml`.
+
 More details about each dataset sequence can be found in [data_description.md](data_description.md).
 
 
