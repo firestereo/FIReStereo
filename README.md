@@ -3,7 +3,8 @@
   <h1 align="center">FIReStereo: Forest InfraRed Stereo Dataset for UAS Depth Perception in Visually Degraded Environments</h1>
   <p align="center">
   Devansh Dhrafani*, Yifei Liu*, Andrew Jong, Ukcheol Shin, Yao He, Tyler Harp, Yaoyu Hu, Jean Oh, Sebastian Scherer</p>
-  <h3 align="center"><a href="http://arxiv.org/abs/2409.07715">Paper</a> | <a href="https://firestereo.github.io/">Project Page</a></h3>
+  <h3 align="center">IEEE RA-L 2025</h3>
+  <h3 align="center"><a href="https://ieeexplore.ieee.org/document/10857349">Paper</a> | <a href="https://firestereo.github.io/">Project Page</a> | <a href="http://arxiv.org/abs/2409.07715">Preprint</a></h3>
 
 </p>
 
@@ -48,13 +49,14 @@ Visualize the thermal images with our 16-bit to 8-bit converstion and pre-proces
 ### Citation
 If you find this work useful, please consider citing:
 ```
-@misc{firestereo2024,
-      title={FIReStereo: Forest InfraRed Stereo Dataset for UAS Depth Perception in Visually Degraded Environments},
-      author={Dhrafani, Devansh and Liu, Yifei and Jong, Andrew and Shin, Ukcheol and He, Yao and Harp, Tyler and Hu, Yaoyu and Oh, Jean and Scherer, Sebastian},
-      year={2024},
-      eprint={2409.07715},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2409.07715}, 
-    }
+@article{firestereo,
+  author={Dhrafani, Devansh and Liu, Yifei and Jong, Andrew and Shin, Ukcheol and He, Yao and Harp, Tyler and Hu, Yaoyu and Oh, Jean and Scherer, Sebastian},
+  journal={IEEE Robotics and Automation Letters}, 
+  title={FIReStereo: Forest InfraRed Stereo Dataset for UAS Depth Perception in Visually Degraded Environments}, 
+  year={2025},
+  volume={10},
+  number={4},
+  pages={3302-3309},
+  doi={10.1109/LRA.2025.3536278}
+}
 ```
