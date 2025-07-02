@@ -13,7 +13,7 @@ def download_from_airlab_server(source_name, target_name):
     """
     access_key = ""#REFER TO README
     secret_key = ""#REFER TO README
-    endpoint_url = "airlab-share-01.andrew.cmu.edu:9000"
+    endpoint_url = "airlab-share-02.andrew.cmu.edu:9000"
 
     client = Minio(endpoint_url,access_key=access_key,secret_key=secret_key,secure=True)
     bucket_name = "firestereo"
