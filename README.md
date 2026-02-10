@@ -9,13 +9,16 @@
 </p>
 
 ### Download data
-1. Obtain access keys by filling out a simple [survey](https://forms.gle/Vor6LEKXtk6FCaxj9).
-2. Paste the keys into `download_data.py`.
+1. To help us better support your research needs, we kindly request you fill out a simple [survey](https://forms.gle/Vor6LEKXtk6FCaxj9).
+2. 
 ```bash
-pip install minio tqdm
+pip install tqdm
 python download_data.py [--outdir] [--unzip] [--data]
 ```
-- `--data`: default is `all`. Select:
+- `--outdir`: directory to save the downloaded data. (Default: `./firestereo`).
+- `--unzip`: unzip the downloaded files. (Default: `False`).
+- `--data`: (Default: `all`). Select one or more of the following:
+  - `test` for downloading a quick test file to verify your connection to our server.
   - `depth` for our stereo thermal & depth collection
   - `thermal` for the collection featuring prescribed fire and smoke
   - `rosbags` for LiDAR and IMU data
@@ -44,7 +47,6 @@ python browse_data.py [--dir] [--options] [--skip] [--align_contrast] [--process
 
 Visualize the thermal images with our 16-bit to 8-bit converstion and pre-processing pipeline by running python browse_data.py with `--process firestere` option. This will apply the same processing pipeline as in the paper.
 
-### Stay tuned for dataloader, training scripts, and models.
 
 ### Citation
 If you find this work useful, please consider citing:
